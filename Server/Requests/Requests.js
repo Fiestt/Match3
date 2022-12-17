@@ -148,7 +148,7 @@ class Requests {
                             score: players[0].score,
                             id: players[0].id,
                         }
-                        res.status(200).json({ message: "Player is authorized", token: token })
+                        res.status(200).json({ message: "Player is authorized", player: player, token: token })
                     } else if (!result) {
                         res.status(400).json({ error: "Password is wrong!" })
                     }
