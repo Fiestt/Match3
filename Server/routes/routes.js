@@ -16,7 +16,7 @@ function AuthCheck (req, res, next) {
    
 }
 
-router.post("/player",  requests.createPlayer )
+// router.post("/player",  requests.createPlayer )
 router.get("/player", AuthCheck, requests.getPlayers )
 router.get("/player/:id", requests.getOnePlayer )
 router.put("/player", requests.updPlayer )
