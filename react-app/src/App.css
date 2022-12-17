@@ -1,0 +1,131 @@
+@font-face {
+    font-family: neon_title;
+    src: url("../../react-app/fonts/neon_title.ttf");
+}
+
+@font-face {
+    font-family: neon_options;
+    src: url("../../react-app/fonts/neon_opions.otf");
+}
+
+@font-face {
+    font-family: type_1;
+    src: url("../../react-app/fonts/JoyNeon-yw1W3.otf");
+}
+
+@font-face {
+    font-family: type_2;
+    src:
+        url("https://assets.codepen.io/2585/NeonTubes2.otf") format("woff"),
+        url("https://assets.codepen.io/2585/NeonTubes2.otf") format("opentype"),
+        url("https://assets.codepen.io/2585/NeonTubes2.otf") format("truetype");
+}
+
+.neon__text__type__1 {
+    font-family: type_1, sans-serif;
+    font-size: 3rem;
+    font-weight: 500;
+    text-align: center;
+    color: #fff;
+    text-shadow:
+        0 0 1px #fff,
+        0 0 2px #fff,
+        0 0 5px #fff,
+        0 0 11px #bc13fe,
+        0 0 20px #bc13fe,
+        0 0 30px #bc13fe,
+        0 0 55px #bc13fe,
+        0 0 80px #bc13fe;
+
+}
+
+.neon__text__type__2 {
+    font-family: type_1, sans-serif;
+    font-size: 3rem;
+    font-weight: 500;
+    text-align: center;
+    color: #fff;
+    text-shadow:
+        0 0 1px #fff,
+        0 0 2px #fff,
+        0 0 5px #fff,
+        0 0 11px #0fa,
+        0 0 20px #0fa,
+        0 0 30px #0fa,
+        0 0 55px #0fa,
+        0 0 80px #0fa;
+
+}
+
+.neon__border__type__1 {
+    border-color: #fff;
+    box-shadow: 0 0 .2rem #fff,
+        0 0 0.1rem #fff,
+        0 0 1rem #bc13fe,
+        0 0 0.8rem #bc13fe,
+        0 0 1.2rem #bc13fe,
+        inset 0 0 1.1rem #bc13fe;
+}
+
+.neon__border__type__2 {
+    border-color: #fff;
+    box-shadow: 0 0 .2rem #fff,
+        0 0 0.1rem #fff,
+        0 0 1rem #0fa,
+        0 0 0.8rem #0fa,
+        0 0 1.2rem #0fa,
+        inset 0 0 1.1rem #0fa;
+}
+
+.btn__type__1 {
+    background-color: rgb(0, 0, 0);
+}
+
+@keyframes flicker {
+    0%,
+    18%,
+    22%,
+    25%,
+    53%,
+    57%,
+    100% {
+        text-shadow:
+            0 0 1px #fff,
+            0 0 2px #fff,
+            0 0 5px #fff,
+            0 0 11px #bc13fe,
+            0 0 20px #bc13fe,
+            0 0 30px #bc13fe,
+            0 0 55px #bc13fe,
+            0 0 80px #bc13fe;
+    }
+
+    20%,
+    24%,
+    55% {
+        text-shadow: none;
+    }
+}
+
+/* @keyframes flicker {
+    50% {
+        text-shadow:
+            0 0 1px #fff,
+            0 0 2px #fff,
+            0 0 5px #fff,
+            0 0 11px #bc13fe,
+            0 0 20px #bc13fe,
+            0 0 30px #bc13fe,
+            0 0 55px #bc13fe,
+            0 0 80px #bc13fe;
+    }
+
+    0%,
+    100% {
+        text-shadow: none;
+    }
+} */
+
+.flicker {
+    animation: flicker 2s infinite;
+}

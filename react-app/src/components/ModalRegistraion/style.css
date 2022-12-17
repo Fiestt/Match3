@@ -1,0 +1,40 @@
+.popupBox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0008;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.popupBox.active {
+    display: flex;
+}
+
+.popup {
+    width: 600px;
+    background-color: rgb(0, 0, 0);
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.popupClose {
+    position: absolute;
+    right: 5px;
+    top: -10px;
+    cursor: pointer;
+}
+
+.input {
+    font-size: 3rem;
+}
