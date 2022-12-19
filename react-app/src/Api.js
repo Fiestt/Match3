@@ -21,7 +21,7 @@ class Api {
     // Player authorization
 
     authPlayer(body) {
-        return fetch(`${this.token}/player/auth`, {
+        return fetch(`${this.path}/player/auth`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -30,10 +30,6 @@ class Api {
             body: JSON.stringify(body)
         })
     }
-
-
-
-
 
     // getProducts() {
     //     return fetch(`${this.path}/products`, {

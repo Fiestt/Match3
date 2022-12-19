@@ -1,10 +1,11 @@
-const Pool = require('pg').Pool
-const pool = new Pool({
-    user: "postgres",
-    password: "776809Alexander",
-    host: "localhost",
-    port: 5432,
-    database: "match"
-})
+const mysql = require('mysql2/promise');
 
-module.exports = pool;
+const pool = mysql.createPool({
+    host: "sql6.freesqldatabase.com",
+    user: "sql6585307",
+    password: "yDPKnN5rLG",
+    database: "sql6585307",
+    port: 3306
+});
+
+module.exports = pool

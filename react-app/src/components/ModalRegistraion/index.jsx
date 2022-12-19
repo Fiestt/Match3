@@ -17,9 +17,10 @@ export default ({ changeRegPopupActive }) => {
 
     const handler = e => {
         e.preventDefault();
-        api.regPlayer({ "email": email, "password": password, "playerName": playerName, "surname": surname })
-            .then(res => res.json())
+        api.regPlayer({ "email": email, "password": password, "playername": playerName, "surname": surname })
+            .then(res =>  res.json())
             .then(data => {
+                console.log(data)
                 setToken(data.token);
                 setPlayerName("");
                 setSurname("");

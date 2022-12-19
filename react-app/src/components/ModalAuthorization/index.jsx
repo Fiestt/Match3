@@ -18,6 +18,7 @@ export default ({ changeAuthPopupActive }) => {
         api.authPlayer({ "email": email, "password": password })
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 // Local.setItem("shop-user", data.token);
                 // Local.setItem("u", data.data, true)
                 setToken(data.token);

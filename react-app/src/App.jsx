@@ -12,7 +12,7 @@ import Map1 from "./pages/Map1/Map1"
 
 
 const Context = React.createContext({});
-export { Context };
+
 
 export default () => {
     const [token, setToken] = useState();
@@ -50,3 +50,5 @@ export default () => {
         </Context.Provider>
     )
 }
+
+export { Context };
