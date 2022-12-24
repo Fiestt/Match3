@@ -17,7 +17,7 @@ export default ({ changeRegPopupActive }) => {
 
     const handler = e => {
         e.preventDefault();
-        api.regPlayer({ "email": email, "password": password, "playerName": playerName, "surname": surname })
+        api.regPlayer({ "email": email, "password": password, "playername": playerName, "surname": surname })
             .then(res => res.json())
             .then(data => {
                 setToken(data.token);
@@ -28,7 +28,6 @@ export default ({ changeRegPopupActive }) => {
                 changeRegPopupActive(false)
                 nav("/main");
             })
-        nav("/main");
     }
 
     return <div className={changeRegPopupActive ? "popupBox active" : "popupBox"}>

@@ -21,7 +21,7 @@ class Api {
     // Player authorization
 
     authPlayer(body) {
-        return fetch(`${this.token}/player/auth`, {
+        return fetch(`${this.path}/player/auth`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -31,6 +31,25 @@ class Api {
         })
     }
 
+    // Get one player
+
+    getPlayer(id) {
+        return fetch(`${this.path}/player/:${id}`, {
+            method: "GET",
+            headers: {
+            }
+        })
+    }
+
+    // Get all players
+
+    getPlayers() {
+        return fetch(`${this.path}/players`, {
+            method: "GET",
+            headers: {
+            }
+        })
+    }
 
 
 
