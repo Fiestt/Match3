@@ -31,6 +31,29 @@ class Api {
         })
     }
 
+    // Get one player
+
+    getPlayer(id) {
+        return fetch(`${this.path}/player/:${id}`, {
+            method: "GET",
+            headers: {
+            }
+        })
+    }
+
+    // Get all players
+
+    getPlayers() {
+        return fetch(`${this.path}/players`, {
+            method: "GET",
+            headers: {
+            }
+        })
+    }
+
+
+
+
     // getProducts() {
     //     return fetch(`${this.path}/products`, {
     //         headers: {

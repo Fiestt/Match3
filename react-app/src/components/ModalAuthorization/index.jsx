@@ -6,7 +6,7 @@ import { Form, Button } from "react-bootstrap";
 // import Local from "../../local";
 
 export default ({ changeAuthPopupActive }) => {
-    const { api, setToken } = useContext(Context);
+    const { api, token, setToken, userMatch3, setUserMatch3 } = useContext(Context);
 
     const nav = useNavigate();
 
@@ -18,19 +18,19 @@ export default ({ changeAuthPopupActive }) => {
         api.authPlayer({ "email": email, "password": password })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
-                // Local.setItem("shop-user", data.token);
-                // Local.setItem("u", data.data, true)
+                console.log(data);
+                console.log(data.player);
+                console.log(data.token);
+                localStorage.setItem("tokenMatch3", data.token);
+                localStorage.setItem("userMatch3", JSON.stringify(data.player));
                 setToken(data.token);
-                // setUser(data.data);
+                setUserMatch3(JSON.stringify(data.player));
                 setEmail("");
                 setPassword("");
                 changeAuthPopupActive(false)
                 nav("/main");
             })
-        nav("/main");
     }
-
     return <div className={changeAuthPopupActive ? "popupBox active" : "popupBox"}>
         <div className="popup neon__border__type__1 neon__text__type__2">
             <div className="popupClose" onClick={e => { changeAuthPopupActive(false) }}>x</div>

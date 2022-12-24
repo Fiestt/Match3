@@ -146,7 +146,8 @@ class Requests {
                     } else if (result) {
                         const token = jwt.sign({ email: email }, process.env.SECRET_KEY)
                         let player = {
-                            playername: players[0].player,
+                            playername: players[0].playername,
+                            email:  players[0].email,
                             surname: players[0].surname,
                             score: players[0].score,
                             id: players[0].id,
