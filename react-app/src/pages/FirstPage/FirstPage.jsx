@@ -8,7 +8,7 @@ export default () => {
     const [regPopupActive, changeRegPopupActive] = useState(false);
 
     return (
-        <div className="center__block"> 
+        <div className="center__block">
             <div className="main__container">
                 <div className="main__title">
                     <h1 className="neon__title neon__text__type__1">MATCH-<span className="neon__title neon__text__type__1 flicker">3</span> GAME</h1>
@@ -25,8 +25,8 @@ export default () => {
                     >Registration</button>
                 </div>
             </div>
-            {authPopupActive ? <ModalAuth changeAuthPopupActive={changeAuthPopupActive}/> : <></>}
-            {regPopupActive ? <ModalReg changeRegPopupActive={changeRegPopupActive}/> : <></>}
+            {authPopupActive ? <ModalAuth changeAuthPopupActive={changeAuthPopupActive} /> : <></>}
+            {regPopupActive ? <ModalReg changeRegPopupActive={changeRegPopupActive} /> : <></>}
         </div>
     )
 }

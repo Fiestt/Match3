@@ -13,7 +13,7 @@ export default ({ info }) => {
         </div>
         <div className="card-stats ">
             <div className="stat">
-                <div className="value neon__text__type__2">{info.score}</div>
+                <div className="value neon__text__type__2">🏆 {info.score}</div>
             </div>
         </div>
     </div >

@@ -1,18 +1,22 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Records.css";
 import { Context } from "../../App";
 import Card from "../../components/Card";
+import Loader from "../../components/Loader";
 
 export default () => {
+    const nav = useNavigate();
     const { api } = useContext(Context);
     const [users, setUsers] = useState();
-    const [cardsSort, setCardsSort] = useState("score");
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         api.getPlayers()
             .then(res => res.json())
             .then(data => {
                 setUsers(data);
+                setIsLoading(false);
             })
     }, [])
 
@@ -24,6 +28,10 @@ export default () => {
     }
 
     return <div>
+        <button className="btn__type__1 neon__text__type__2 neon__border__type__1 logout" onClick={e => nav("/")}>back</button>
+        <div className="main__title">
+            <h1 className="neon__title neon__text__type__1">REC<span className="neon__title neon__text__type__1 flicker">O</span>RDS</h1>
+        </div>
         <form className="sort">
             <div className="radio">
                 <input type="radio" value="score" id="score" name="sort" onClick={() => sortCards("score")}></input>
@@ -38,12 +46,13 @@ export default () => {
                 <label htmlFor="surname" className="neon__text__type__2 neon__border__type__1">Surname</label>
             </div>
         </form>
-        <div className="card__container">
-            {users && users.map((d) =>
-                <Card key={d.id} info={d} />
-            )}
-        </div>
-    </div> 
+        {isLoading ? <Loader /> :
+            <div className="card__container">
+                {users && users.map((d) =>
+                    <Card key={d.id} info={d} />
+                )}
+            </div>}
+    </div>
 
 
 

@@ -23,7 +23,10 @@ export default () => {
     const [userMatch3, setUserMatch3] = useState();
     useEffect(() => {
         setApi(new Api(token));
+        setToken(localStorage.getItem("tokenMatch3"));
     }, [token]);
+
+    // setToken(localStorage.getItem("tokenMatch3"));
 
     return (
         <Context.Provider value={{
@@ -37,14 +40,16 @@ export default () => {
             <div className="bg">
                 <ReactAudioPlayer
                     src={music}
-                    autoPlay
-                    volume={0.1}
+                    autoplay
+                    volume={0.2}
                     loop
+                    controls
+                    className="audio"
                 />
 
                 <Routes>
-                    <Route path="" element={<FirstPage />} />
-                    <Route path="/main" element={<MainPage />} />
+                    {!token && <Route path="" element={<FirstPage />} />}
+                    {token && <Route path="" element={<MainPage />} />}
                     <Route path="/maps" element={<Map1 />} />
                     <Route path="/map1" element={<></>} />
                     <Route path="/map2" element={<></>} />

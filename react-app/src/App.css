@@ -58,6 +58,7 @@
 }
 
 .neon__border__type__1 {
+    border-radius: 15px;
     border-color: #fff;
     box-shadow: 0 0 .2rem #fff,
         0 0 0.1rem #fff,
@@ -68,6 +69,7 @@
 }
 
 .neon__border__type__2 {
+    border-radius: 15px;
     border-color: #fff;
     box-shadow: 0 0 .2rem #fff,
         0 0 0.1rem #fff,
@@ -108,26 +110,6 @@
     }
 }
 
-@keyframes flicker {
-    20%,
-    50% {
-        text-shadow:
-            0 0 1px #fff,
-            0 0 2px #fff,
-            0 0 5px #fff,
-            0 0 11px #bc13fe,
-            0 0 20px #bc13fe,
-            0 0 30px #bc13fe,
-            0 0 55px #bc13fe,
-            0 0 80px #bc13fe;
-    }
-
-    0%,
-    100% {
-        text-shadow: none;
-    }
-}
-
 .flicker {
     animation: flicker 0.2s infinite;
 }
@@ -146,4 +128,10 @@
     background-size: cover;
     /* width: 100vw;
     height: 100vh; */
+}
+
+.audio {
+    position: fixed;
+    top: 2%;
+    right: 2%;
 }
