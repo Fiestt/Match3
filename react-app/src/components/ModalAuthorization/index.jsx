@@ -19,14 +19,10 @@ export default ({ changeAuthPopupActive }) => {
             .then(res => res.json())
             .then(data => {
                 if (data.error === "Password is wrong!") {
-                    alert("Password is wrong!");
+                    alert("Password or login is wrong!");
                 } else if (data.error === "Player does not exist!") {
                     alert("Player does not exist!");
-                }
-                else if (data.error === "Some error during comparison!") {
-                    alert("Some error during comparison!");
-                } else {
-                    alert("Player is authorized");
+                } else { 
                     localStorage.setItem("tokenMatch3", data.token);
                     localStorage.setItem("userMatch3", JSON.stringify(data.player));
                     setToken(data.token);
