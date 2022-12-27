@@ -26,7 +26,7 @@ export default ({ changeRegPopupActive }) => {
                 setPassword("");
                 setEmail("");
                 changeRegPopupActive(false)
-                nav("/main");
+                nav("");
             })
     }
 

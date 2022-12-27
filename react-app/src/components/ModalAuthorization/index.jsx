@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext } from "react"; 
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../../App";
 
@@ -18,17 +18,20 @@ export default ({ changeAuthPopupActive }) => {
         api.authPlayer({ "email": email, "password": password })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
-                console.log(data.player);
-                console.log(data.token);
-                localStorage.setItem("tokenMatch3", data.token);
-                localStorage.setItem("userMatch3", JSON.stringify(data.player));
-                setToken(data.token);
-                setUserMatch3(JSON.stringify(data.player));
-                setEmail("");
-                setPassword("");
-                changeAuthPopupActive(false)
-                nav("/main");
+                if (data.error === "Password is wrong!") {
+                    alert("Password or login is wrong!");
+                } else if (data.error === "Player does not exist!") {
+                    alert("Player does not exist!");
+                } else { 
+                    localStorage.setItem("tokenMatch3", data.token);
+                    localStorage.setItem("userMatch3", JSON.stringify(data.player));
+                    setToken(data.token);
+                    setUserMatch3(JSON.stringify(data.player));
+                    setEmail("");
+                    setPassword("");
+                    changeAuthPopupActive(false)
+                    nav("");
+                }
             })
     }
     return <div className={changeAuthPopupActive ? "popupBox active" : "popupBox"}>
