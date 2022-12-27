@@ -28,14 +28,10 @@
 }
 
 .sort input[type=radio]:checked+label {
-    background: #ffe0a6;
+    background: #dd700a;
 }
 
 .sort label:hover {
     color: #666;
 }
 
-.sort input[type=radio]:disabled+label {
-    background: #efefef;
-    color: #666;
-}

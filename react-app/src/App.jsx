@@ -38,7 +38,7 @@ export default () => {
                 <ReactAudioPlayer
                     src={music}
                     autoPlay
-                    volume={0.1}
+                    volume={0.01}
                     loop
                 />
 
