@@ -12,17 +12,19 @@ export default ({ changeRegPopupActive }) => {
 
     const [playerName, setPlayerName] = useState("");
     const [surname, setSurname] = useState("");
+    const [avatar, setAvatar] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
 
     const handler = e => {
         e.preventDefault();
-        api.regPlayer({ "email": email, "password": password, "playername": playerName, "surname": surname })
+        api.regPlayer({ "email": email, "password": password, "avatar": avatar, "playername": playerName, "surname": surname })
             .then(res => res.json())
             .then(data => {
                 setToken(data.token);
                 setPlayerName("");
                 setSurname("");
+                setAvatar("");
                 setPassword("");
                 setEmail("");
                 changeRegPopupActive(false)
@@ -49,6 +51,15 @@ export default ({ changeRegPopupActive }) => {
                         type="text"
                         value={surname}
                         onChange={e => setSurname(e.target.value)}
+                        className="neon__border__type__1 input"
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Avatar </Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={avatar}
+                        onChange={e => setAvatar(e.target.value)}
                         className="neon__border__type__1 input"
                     />
                 </Form.Group>
