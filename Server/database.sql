@@ -2,10 +2,11 @@
  
  create TABLE player(
     id SERIAL PRIMARY KEY,
-    playerName VARCHAR(255),
+    playername VARCHAR(255),
     surname VARCHAR(255),
     score INTEGER,
-    scoreDate DATE
+    scoreDate DATE,
+    email VARCHAR(255)
  ); 
  
 ALTER TABLE player

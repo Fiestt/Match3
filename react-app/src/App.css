@@ -1,0 +1,137 @@
+@font-face {
+    font-family: neon_title;
+    src: url("../../react-app/fonts/neon_title.ttf");
+}
+
+@font-face {
+    font-family: neon_options;
+    src: url("../../react-app/fonts/neon_opions.otf");
+}
+
+@font-face {
+    font-family: type_1;
+    src: url("../../react-app/fonts/JoyNeon-yw1W3.otf");
+}
+
+@font-face {
+    font-family: type_2;
+    src:
+        url("https://assets.codepen.io/2585/NeonTubes2.otf") format("woff"),
+        url("https://assets.codepen.io/2585/NeonTubes2.otf") format("opentype"),
+        url("https://assets.codepen.io/2585/NeonTubes2.otf") format("truetype");
+}
+
+.neon__text__type__1 {
+    font-family: type_1, sans-serif;
+    font-size: 3rem;
+    font-weight: 500;
+    text-align: center;
+    color: #fff;
+    text-shadow:
+        0 0 1px #fff,
+        0 0 2px #fff,
+        0 0 5px #fff,
+        0 0 11px #bc13fe,
+        0 0 20px #bc13fe,
+        0 0 30px #bc13fe,
+        0 0 55px #bc13fe,
+        0 0 80px #bc13fe;
+
+}
+
+.neon__text__type__2 {
+    font-family: type_1, sans-serif;
+    font-size: 3rem;
+    font-weight: 500;
+    text-align: center;
+    color: #fff;
+    text-shadow:
+        0 0 1px #fff,
+        0 0 2px #fff,
+        0 0 5px #fff,
+        0 0 11px #ff123f,
+        0 0 20px #ff123f,
+        0 0 30px #ff123f,
+        0 0 55px #ff123f,
+        0 0 80px #ff123f;
+
+}
+
+.neon__border__type__1 {
+    border-radius: 15px;
+    border-color: #fff;
+    box-shadow: 0 0 .2rem #fff,
+        0 0 0.1rem #fff,
+        0 0 1rem #bc13fe,
+        0 0 0.8rem #bc13fe,
+        0 0 1.2rem #bc13fe,
+        inset 0 0 1.1rem #bc13fe;
+}
+
+.neon__border__type__2 {
+    border-radius: 15px;
+    border-color: #fff;
+    box-shadow: 0 0 .2rem #fff,
+        0 0 0.1rem #fff,
+        0 0 1rem #ff123f,
+        0 0 0.8rem #ff123f,
+        0 0 1.2rem #ff123f,
+        inset 0 0 1.1rem #ff123f;
+}
+
+.btn__type__1 {
+    background-color: rgb(0, 0, 0);
+}
+
+@keyframes flicker {
+
+    0%,
+    18%,
+    22%,
+    25%,
+    53%,
+    57%,
+    100% {
+        text-shadow:
+            0 0 1px #fff,
+            0 0 2px #fff,
+            0 0 5px #fff,
+            0 0 11px #bc13fe,
+            0 0 20px #bc13fe,
+            0 0 30px #bc13fe,
+            0 0 55px #bc13fe,
+            0 0 80px #bc13fe;
+    }
+
+    20%,
+    24%,
+    55% {
+        text-shadow: none;
+    }
+}
+
+.flicker {
+    animation: flicker 0.2s infinite;
+}
+
+.bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://i.pinimg.com/originals/3c/ab/43/3cab434622d9fabfde2f46e9a51380d6.gif);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /* width: 100vw;
+    height: 100vh; */
+}
+
+.audio {
+    position: fixed;
+    top: 2%;
+    right: 2%;
+}

@@ -5,19 +5,19 @@ const jwt = require('jsonwebtoken')
 
 
 
-function AuthCheck (req, res, next) {
-    const authHeader = req.headers['authorization']
-    console.log(authHeader)
-    const headerToken = authHeader && authHeader.split(' ')[1] 
-    jwt.verify(headerToken, process.env.SECRET_KEY, (err, data) => {
-        if (err) return res.status(400).json({error: "Invalid token"})
-        next() 
-    })
+// function AuthCheck (req, res, next) {
+//     const authHeader = req.headers['authorization']
+//     console.log(authHeader)
+//     const headerToken = authHeader && authHeader.split(' ')[1] 
+//     jwt.verify(headerToken, process.env.SECRET_KEY, (err, data) => {
+//         if (err) return res.status(400).json({error: "Invalid token"})
+//         next() 
+//     })
    
-}
+// }
 
-router.post("/player",  requests.createPlayer )
-router.get("/player", AuthCheck, requests.getPlayers )
+// router.post("/player",  requests.createPlayer )
+router.get("/players", requests.getPlayers )
 router.get("/player/:id", requests.getOnePlayer )
 router.put("/player", requests.updPlayer )
 router.delete("/player/:id", requests.deletePlayer )
