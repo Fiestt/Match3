@@ -13,13 +13,13 @@
     margin: 30px;
 } 
 
-.card-image {
-    grid-area: image;
+/* .card-image {
+    
     background: url("https://damion.club/uploads/posts/2022-03/thumbs/1646424666_24-damion-club-p-anime-neon-art-27.jpg");
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     background-size: cover;
-}
+} */
 
 .card-text {
     grid-area: text;

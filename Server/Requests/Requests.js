@@ -26,6 +26,7 @@ class Requests {
         try {
            const player = await db.query('SELECT * FROM player')
             res.json(player[0])
+            // console.log(player[0])
         } catch (err) {
             console.log(err);
             res.status(500).json({
@@ -88,7 +89,7 @@ class Requests {
             // res.json(data[0])
             const arr = data[0];
             if (arr.length !== 0) {
-                res.status(400).json({ email: "This email already exists!" })
+                res.status(400).json({ message: "This email already exists!" })
             } else {
                 // res.json({res: "OK"})
                 bcrypt.hash(password, 10, (err, hash) => {
@@ -114,16 +115,26 @@ class Requests {
                     //         res.status(200).json({ message: "New player is added" })
                     //     }
                     // })
-                    db.query(`INSERT INTO player (playername, surname, avatar, email, password) VALUES (?, ?, ?, ?, ?)`, [newPlayer.playername, newPlayer.surname, newPlayer.avatar, newPlayer.email, newPlayer.password])
-                    res.status(200).json({ message: "New player is added" })
+
                     
-                    if (flag) {
-                        const token = jwt.sign({ email: newPlayer.email }, process.env.SECRET_KEY)
-                        // console.log(token)
+                    // db.query(`INSERT INTO player (playername, surname, avatar, email, password) VALUES (?, ?, ?, ?, ?)`, [newPlayer.playername, newPlayer.surname, newPlayer.avatar, newPlayer.email, newPlayer.password], function (err, res) {
+                    //     if (res) {
+                    //         res.json({ message: "New player is added" })
+                    //     }
+                    // })
+                    // res.json({ message: "New player is added" })
+
+                    
+                    try {
+                        db.query(`INSERT INTO player (playername, surname, avatar, email, password) VALUES (?, ?, ?, ?, ?)`, [newPlayer.playername, newPlayer.surname, newPlayer.avatar, newPlayer.email, newPlayer.password])
+                        res.json({ message: "New player is added" })
+                    } catch (error) {
+                        res.json({ error: error })
                     }
                 });
-
             }
+
+           
 
         } catch (err) {
             console.log(err);
