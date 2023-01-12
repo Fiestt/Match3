@@ -10,6 +10,7 @@ import FirstPage from "./pages/FirstPage/FirstPage";
 import Info from "./pages/Info/Info";
 import Api from "./Api.js";
 import Map1 from "./pages/Map1/Map1";
+import Game1 from "./pages/Game1/Game1";
 import Records from "./pages/Records/Records";
 
 import music from "./music/Mareux.mp3";
@@ -50,7 +51,7 @@ export default () => {
                 <Routes>
                     {!token && <Route path="" element={<FirstPage />} />}
                     {token && <Route path="" element={<MainPage />} />}
-                    <Route path="/maps" element={<Map1 />} />
+                    <Route path="/maps" element={<Game1 />} />
                     <Route path="/map1" element={<></>} />
                     <Route path="/map2" element={<></>} />
                     <Route path="/map3" element={<></>} />

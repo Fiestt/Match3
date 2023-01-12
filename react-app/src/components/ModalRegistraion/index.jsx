@@ -7,7 +7,7 @@ import { useEffect } from "react";
 // import Local from "../../local";
 
 export default ({ changeRegPopupActive }) => {
-    const { api, setToken } = useContext(Context);
+    const { api, setToken, userMatch3, setUserMatch3     } = useContext(Context);
 
     const nav = useNavigate();
 
@@ -17,7 +17,6 @@ export default ({ changeRegPopupActive }) => {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
 
-    const [msg, setMsg] = useState("")
 
     const handler = e => {
         e.preventDefault();
@@ -39,7 +38,11 @@ export default ({ changeRegPopupActive }) => {
                         .then(res => res.json())
                         .then(data => {
                             console.log(data)
+                            localStorage.setItem("tokenMatch3", data.token);
+                            localStorage.setItem("userMatch3", JSON.stringify(data.player));
                             setToken(data.token);
+                            setUserMatch3(JSON.stringify(data.player));
+                            
                         })
                 }
 
