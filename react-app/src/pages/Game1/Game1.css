@@ -1,7 +1,11 @@
 .app {
     display: flex;
-    padding: 30px;
-    background-color: aqua;
+    background-color: black;
+    width: 600px;
+    height: 600px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
 }
 
 .game {
@@ -9,13 +13,13 @@
     height: 560px;
     display: flex;
     flex-wrap: wrap;
+
 }
 
-.game img {
+.game div {
     width: 70px;
     height: 70px;
+    border: 1px solid black;
+    box-sizing: border-box;
 }
 
-.bg {
-    height: 100vh;
-}
