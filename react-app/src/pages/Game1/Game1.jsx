@@ -25,25 +25,29 @@ export default () => {
 
     useEffect(() => {
         const id = JSON.parse(localStorage.getItem("userMatch3")).id;
-        console.log(id);
-        api.getPlayer(id)
-            .then(res => {
-                res.json();
-                console.log(res.status);
-            })
+        // console.log(id, "WWWWWWWWW");
+        api.getOnePlayer(id)
+            .then(res => res.json())
             .then(data => {
-                console.log(data);
+                setServerScore(data.score)
+                console.log(data, "QQQQQQQQQQ");
             })
     }, [])
 
     useEffect(() => {
-        let obj = JSON.parse(localStorage.getItem("userMatch3"));
-        obj.score = currentScore;
-        api.updPlayer(obj)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-            })
+        if (currentScore > serverScore) {
+
+            let obj = JSON.parse(localStorage.getItem("userMatch3"));
+            console.log(obj, "VVVVVV")
+            obj.score = currentScore
+            api.updPlayer(obj)
+                .then(res => res.json())
+                .then(data => {
+                    localStorage.setItem("userMatch3", JSON.stringify(data))
+                    console.log(data, "NEW SCORE OF A PLAYER");
+                })
+        }
+       
     }, [currentScore])
 
     //!!!!!!!!! end fix by Vlad

@@ -41,7 +41,8 @@ class Requests {
         const id = req.params.id
         try {
             const player = await db.query('SELECT * FROM player WHERE id = ?', [id])
-            res.json(player[0])
+            res.json(player[0][0])
+            // console.log(player[0])
         } catch (err) {
             console.log(err);
             res.status(500).json({
@@ -55,8 +56,13 @@ class Requests {
     async updPlayer(req, res) {
         const { id, playername, surname, score } = req.body
         try {
-            const player = await db.query('UPDATE player set playername = ?, surname = ?, score = ? WHERE id = ? RETURNING *', [playername, surname, id, score])
-            res.json(player[0])
+            const player = await db.query('UPDATE player SET playername = ?, surname = ?, score = ? WHERE id = ?', [playername, surname, score, id])
+
+            console.log(player, "PPPP")
+
+            const newPlayer = await db.query('SELECT * FROM player WHERE id = ?', [id])
+            res.json(newPlayer[0][0])
+            console.log(newPlayer[0][0], "UUUU")
         } catch (err) {
             console.log(err);
             res.status(500).json({
