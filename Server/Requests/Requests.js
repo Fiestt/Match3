@@ -53,9 +53,9 @@ class Requests {
     // UPDATING A PLAYER
 
     async updPlayer(req, res) {
-        const { id, playername, surname } = req.body
+        const { id, playername, surname, score } = req.body
         try {
-            const player = await db.query('UPDATE player set playername = ?, surname = ? WHERE id = ? RETURNING *', [playername, surname, id])
+            const player = await db.query('UPDATE player set playername = ?, surname = ?, score = ? WHERE id = ? RETURNING *', [playername, surname, id, score])
             res.json(player[0])
         } catch (err) {
             console.log(err);
@@ -63,7 +63,7 @@ class Requests {
                 error: "Updating error",
             });
         }
-    }
+    } 
 
     // DELETING A PLAYER
 

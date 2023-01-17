@@ -47,7 +47,6 @@ export default () => {
                     controls
                     className="audio"
                 />
-
                 <Routes>
                     {!token && <Route path="" element={<FirstPage />} />}
                     {token && <Route path="" element={<MainPage />} />}
