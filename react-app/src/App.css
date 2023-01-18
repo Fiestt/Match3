@@ -126,7 +126,7 @@
     height: 100vh;
 }
 
-bg::-webkit-scrollbar {
+.bg::-webkit-scrollbar {
     width: 0px;
 }
 

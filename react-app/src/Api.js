@@ -33,8 +33,8 @@ class Api {
 
     // Get one player
 
-    getPlayer(id) {
-        return fetch(`${this.path}/player/:${id}`, {
+    getOnePlayer(id) {
+        return fetch(`${this.path}/player/${id}`, {
             method: "GET",
             headers: {
             }
@@ -52,9 +52,11 @@ class Api {
     }
 
     updPlayer(body) {
-        return fetch(`${this.path}/"/player`, {
+        return fetch(`${this.path}/player`, {
             method: "PUT",
             headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
             },
             body: JSON.stringify(body)
         })
