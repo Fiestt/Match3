@@ -5,18 +5,20 @@ import { Context } from "../../App";
 import Card from "../../components/Card";
 import Loader from "../../components/Loader";
 
-export default () => {
+export default ({isPersanalData, setIsPersanalData}) => {
     const nav = useNavigate();
     const { api } = useContext(Context);
     const [users, setUsers] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        setIsPersanalData(false)
         api.getPlayers()
             .then(res => res.json())
             .then(data => {
                 setUsers(data);
                 setIsLoading(false);
+                console.log(data)
             })
     }, [])
 
@@ -27,7 +29,7 @@ export default () => {
         setUsers(sortedCards);
     }
 
-    return <div>
+    return <div className="records">
         <button className="btn__type__1 neon__text__type__2 neon__border__type__1 logout" onClick={e => nav("/")}>back</button>
         <div className="main__title">
             <h1 className="neon__title neon__text__type__1">REC<span className="neon__title neon__text__type__1 flicker">O</span>RDS</h1>
@@ -46,14 +48,13 @@ export default () => {
                 <label htmlFor="surname" className="neon__text__type__2 neon__border__type__1">Surname</label>
             </div>
         </form>
-        {isLoading ? <Loader /> :
-            <div className="card__container">
-                {users && users.map((d) =>
-                    <Card key={d.id} info={d} />
-                )}
-            </div>}
+        {
+            isLoading ? <Loader /> :
+                <div className="card__container " >
+                    {users && users.map((d) =>
+                        <Card key={d.id} user={d} isPersanalData={isPersanalData}/>
+                    )}
+                </div>
+        }
     </div>
-
-
-
 }

@@ -33,8 +33,8 @@ class Api {
 
     // Get one player
 
-    getPlayer(id) {
-        return fetch(`${this.path}/player/:${id}`, {
+    getOnePlayer(id) {
+        return fetch(`${this.path}/player/${id}`, {
             method: "GET",
             headers: {
             }
@@ -51,74 +51,17 @@ class Api {
         })
     }
 
+    updPlayer(body) {
+        return fetch(`${this.path}/player`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(body)
+        })
+    }
 
-
-
-    // getProducts() {
-    //     return fetch(`${this.path}/products`, {
-    //         headers: {
-    //             "Authorization": `Bearer ${this.token}`
-    //         }
-    //     })
-    // }
-    // getProduct(id) {
-    //     return fetch(`${this.path}/products/${id}`, {
-    //         headers: {
-    //             "Authorization": `Bearer ${this.token}`
-    //         }
-    //     })
-    // }
-    // addProduct(body) {
-    //     return fetch(`${this.path}/products/`, {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Authorization": `Bearer ${this.token}`
-    //         },
-    //         body: JSON.stringify(body)
-    //     })
-    // }
-    // updProduct(id, body) {
-    //     return fetch(`${this.path}/products/${id}`, {
-    //         method: "PATCH",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Authorization": `Bearer ${this.token}`
-    //         },
-    //         body: JSON.stringify(body)
-    //     })
-    // }
-    // delProduct() {
-
-    // }
-    // logIn(body) { // войти
-    //     return fetch(`${this.path}/signin`, {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Accept": "application/json"
-    //         },
-    //         body: JSON.stringify(body)
-    //     })
-    // }
-    // signUp() { 
-
-    // }
-    // showProfile() {
-    //     return fetch(`${this.path}/users/me`, {
-    //         headers: {
-    //             "Authorization": `Bearer ${this.token}`
-    //         }
-    //     })
-    // }
-    // setLike(id, flag) {
-    //     return  fetch(`${this.path}/products/likes/${id}`, {
-    //         method: flag ? "PUT" : "DELETE",
-    //         headers: {
-    //             "Authorization": `Bearer ${this.token}`
-    //         }
-    //     })
-    // }
 }
 
 

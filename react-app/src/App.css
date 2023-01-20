@@ -111,23 +111,23 @@
 }
 
 .flicker {
-    animation: flicker 0.2s infinite;
+    animation: flicker 0.5s infinite;
 }
 
 .bg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-image: url(https://i.pinimg.com/originals/3c/ab/43/3cab434622d9fabfde2f46e9a51380d6.gif);
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
-    /* width: 100vw;
-    height: 100vh; */
+    display: flex;
+    justify-content: center;
+    overflow: hidden scroll;
+    height: 100vh;
+}
+
+.bg::-webkit-scrollbar {
+    width: 0px;
 }
 
 .audio {

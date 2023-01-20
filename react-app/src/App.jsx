@@ -10,6 +10,7 @@ import FirstPage from "./pages/FirstPage/FirstPage";
 import Info from "./pages/Info/Info";
 import Api from "./Api.js";
 import Map1 from "./pages/Map1/Map1";
+import Game1 from "./pages/Game1/Game1";
 import Records from "./pages/Records/Records";
 
 import music from "./music/Mareux.mp3";
@@ -18,6 +19,9 @@ const Context = React.createContext({});
 
 
 export default () => {
+
+    const [isPersanalData, setIsPersanalData] = useState(false)
+
     const [token, setToken] = useState();
     const [api, setApi] = useState(new Api(token));
     const [userMatch3, setUserMatch3] = useState();
@@ -46,17 +50,16 @@ export default () => {
                     controls
                     className="audio"
                 />
-
                 <Routes>
                     {!token && <Route path="" element={<FirstPage />} />}
                     {token && <Route path="" element={<MainPage />} />}
-                    <Route path="/maps" element={<Map1 />} />
+                    <Route path="/maps" element={<Game1 />} />
                     <Route path="/map1" element={<></>} />
                     <Route path="/map2" element={<></>} />
                     <Route path="/map3" element={<></>} />
-                    <Route path="/records" element={<Records />} />
+                    <Route path="/records" element={<Records setIsPersanalData={setIsPersanalData} isPersanalData={isPersanalData}/>} />
                     <Route path="/info" element={<Info />} />
-                    <Route path="/personaldata" element={<PersonalData />} />
+                    <Route path="/personaldata" element={<PersonalData setIsPersanalData={setIsPersanalData} isPersanalData={isPersanalData}/>} />
                 </Routes>
             </div>
         </Context.Provider>
