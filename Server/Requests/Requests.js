@@ -24,8 +24,9 @@ class Requests {
 
     async getPlayers(req, res) {
         try {
-           const player = await db.query('SELECT * FROM Player')
+           const player = await db.query('SELECT * FROM player')
             res.json(player[0])
+            // console.log(player[0])
         } catch (err) {
             console.log(err);
             res.status(500).json({
@@ -39,8 +40,9 @@ class Requests {
     async getOnePlayer(req, res) {
         const id = req.params.id
         try {
-            const player = await db.query('SELECT * FROM Player WHERE id = ?', [id])
-            res.json(player[0])
+            const player = await db.query('SELECT * FROM player WHERE id = ?', [id])
+            res.json(player[0][0])
+            // console.log(player[0])
         } catch (err) {
             console.log(err);
             res.status(500).json({
@@ -52,17 +54,22 @@ class Requests {
     // UPDATING A PLAYER
 
     async updPlayer(req, res) {
-        const { id, playername, surname } = req.body
+        const { id, playername, surname, avatar, score } = req.body
         try {
-            const player = await db.query('UPDATE player set playername = ?, surname = ? WHERE id = ? RETURNING *', [playername, surname, id])
-            res.json(player[0])
+            const player = await db.query('UPDATE player SET playername = ?, surname = ?, avatar = ?, score = ? WHERE id = ?', [playername, surname, avatar, score, id])
+
+            console.log(player, "PPPP")
+
+            const newPlayer = await db.query('SELECT * FROM player WHERE id = ?', [id])
+            res.json(newPlayer[0][0])
+            console.log(newPlayer[0][0], "UUUU")
         } catch (err) {
             console.log(err);
             res.status(500).json({
                 error: "Updating error",
             });
         }
-    }
+    } 
 
     // DELETING A PLAYER
 
@@ -82,13 +89,13 @@ class Requests {
     // PLAYER REGISTRATION
 
     async regPlayer(req, res) {
-        const { playername, surname, email, password } = req.body;
+        const { playername, surname, avatar, email, password } = req.body;
         try {
-            const data = await db.query(`SELECT * FROM Player WHERE email=?`, [email])
+            const data = await db.query(`SELECT * FROM player WHERE email=?`, [email])
             // res.json(data[0])
             const arr = data[0];
             if (arr.length !== 0) {
-                res.status(400).json({ email: "This email already exists!" })
+                res.status(400).json({ message: "This email already exists!" })
             } else {
                 // res.json({res: "OK"})
                 bcrypt.hash(password, 10, (err, hash) => {
@@ -98,28 +105,42 @@ class Requests {
                     const newPlayer = {
                         playername,
                         surname,
+                        avatar,
                         email,
                         password: hash
                     };
                     let flag = 1;
-                    db.query(`INSERT INTO Player (playername, surname, email, password) VALUES (?, ?, ?, ?)`, [newPlayer.playername, newPlayer.surname, newPlayer.email, newPlayer.password], (err) => {
-                        if (err) {
-                            flag = 0;
-                            res.status(500).json({
-                                error: "Insert new player error"
-                            })
-                        } else {
-                            flag = 1;
-                            res.status(200).json({ message: "New player is added" })
-                        }
-                    })
-                    if (flag) {
-                        const token = jwt.sign({ email: newPlayer.email }, process.env.SECRET_KEY)
-                        // console.log(token)
+                    // db.query(`INSERT INTO player (playername, surname, avatar, email, password) VALUES (?, ?, ?, ?, ?)`, [newPlayer.playername, newPlayer.surname, newPlayer.avatar, newPlayer.email, newPlayer.password], (err) => {
+                    //     if (err) {
+                    //         flag = 0;
+                    //         res.status(500).json({
+                    //             error: "Insert new player error"
+                    //         })
+                    //     } else {
+                    //         flag = 1;
+                    //         res.status(200).json({ message: "New player is added" })
+                    //     }
+                    // })
+
+                    
+                    // db.query(`INSERT INTO player (playername, surname, avatar, email, password) VALUES (?, ?, ?, ?, ?)`, [newPlayer.playername, newPlayer.surname, newPlayer.avatar, newPlayer.email, newPlayer.password], function (err, res) {
+                    //     if (res) {
+                    //         res.json({ message: "New player is added" })
+                    //     }
+                    // })
+                    // res.json({ message: "New player is added" })
+
+                    
+                    try {
+                        db.query(`INSERT INTO player (playername, surname, avatar, email, password) VALUES (?, ?, ?, ?, ?)`, [newPlayer.playername, newPlayer.surname, newPlayer.avatar, newPlayer.email, newPlayer.password])
+                        res.json({ message: "New player is added" })
+                    } catch (error) {
+                        res.json({ error: error })
                     }
                 });
-
             }
+
+           
 
         } catch (err) {
             console.log(err);
@@ -134,7 +155,7 @@ class Requests {
     async authPlayer(req, res) {
         const { email, password } = req.body;
         try {
-            const data = await db.query(`SELECT * FROM Player WHERE email=?`, [email])
+            const data = await db.query(`SELECT * FROM player WHERE email=?`, [email])
             // res.json(data[0])
             const players = data[0]
             if (players.length === 0) {
@@ -149,6 +170,7 @@ class Requests {
                             playername: players[0].playername,
                             email:  players[0].email,
                             surname: players[0].surname,
+                            avatar: players[0].avatar,
                             score: players[0].score,
                             id: players[0].id,
                         }
