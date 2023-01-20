@@ -52,7 +52,11 @@ export default ({isPersanalData, setIsPersanalData}) => {
             isLoading ? <Loader /> :
                 <div className="card__container " >
                     {users && users.map((d) =>
+<<<<<<< HEAD
                         <Card key={d.id} user={d} isPersanalData={isPersanalData}/>
+=======
+                        <Card key={d.id} info={d} />
+>>>>>>> 324579ec7a711f8524c0b89fd26d36aece63ac3f
                     )}
                 </div>
         }
