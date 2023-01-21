@@ -24,7 +24,7 @@ class Requests {
 
     async getPlayers(req, res) {
         try {
-           const player = await db.query('SELECT * FROM player')
+            const player = await db.query('SELECT * FROM player')
             res.json(player[0])
             // console.log(player[0])
         } catch (err) {
@@ -54,10 +54,9 @@ class Requests {
     // UPDATING A PLAYER
 
     async updPlayer(req, res) {
-        const { id, playername, surname, score } = req.body
+        const { id, playername, surname, avatar, score } = req.body
         try {
-            const player = await db.query('UPDATE player SET playername = ?, surname = ?, score = ? WHERE id = ?', [playername, surname, score, id])
-
+            const player = await db.query('UPDATE player SET playername = ?, surname = ?, avatar = ?, score = ? WHERE id = ?', [playername, surname, avatar, score, id])
             console.log(player, "PPPP")
 
             const newPlayer = await db.query('SELECT * FROM player WHERE id = ?', [id])
@@ -69,7 +68,7 @@ class Requests {
                 error: "Updating error",
             });
         }
-    } 
+    }
 
     // DELETING A PLAYER
 
@@ -122,7 +121,7 @@ class Requests {
                     //     }
                     // })
 
-                    
+
                     // db.query(`INSERT INTO player (playername, surname, avatar, email, password) VALUES (?, ?, ?, ?, ?)`, [newPlayer.playername, newPlayer.surname, newPlayer.avatar, newPlayer.email, newPlayer.password], function (err, res) {
                     //     if (res) {
                     //         res.json({ message: "New player is added" })
@@ -130,7 +129,7 @@ class Requests {
                     // })
                     // res.json({ message: "New player is added" })
 
-                    
+
                     try {
                         db.query(`INSERT INTO player (playername, surname, avatar, email, password) VALUES (?, ?, ?, ?, ?)`, [newPlayer.playername, newPlayer.surname, newPlayer.avatar, newPlayer.email, newPlayer.password])
                         res.json({ message: "New player is added" })
@@ -140,7 +139,7 @@ class Requests {
                 });
             }
 
-           
+
 
         } catch (err) {
             console.log(err);
@@ -168,7 +167,7 @@ class Requests {
                         const token = jwt.sign({ email: email }, process.env.SECRET_KEY)
                         let player = {
                             playername: players[0].playername,
-                            email:  players[0].email,
+                            email: players[0].email,
                             surname: players[0].surname,
                             avatar: players[0].avatar,
                             score: players[0].score,
@@ -190,4 +189,3 @@ class Requests {
 }
 
 module.exports = new Requests();
-

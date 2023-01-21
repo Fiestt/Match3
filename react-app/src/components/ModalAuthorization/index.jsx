@@ -1,6 +1,7 @@
-import React, { useState, useContext } from "react"; 
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../../App";
+import AlertPopup from "../AlertPopup";
 
 import { Form, Button } from "react-bootstrap";
 // import Local from "../../local";
@@ -12,17 +13,17 @@ export default ({ changeAuthPopupActive }) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState();
 
     const handler = e => {
         e.preventDefault();
         api.authPlayer({ "email": email, "password": password })
             .then(res => res.json())
             .then(data => {
-                if (data.error === "Password is wrong!") {
-                    alert("Password or login is wrong!");
-                } else if (data.error === "Player does not exist!") {
-                    alert("Player does not exist!");
-                } else { 
+                if (data.error) {
+                    setError(data.error);
+                } else {
+                    setError();
                     localStorage.setItem("tokenMatch3", data.token);
                     localStorage.setItem("userMatch3", JSON.stringify(data.player));
                     setToken(data.token);
@@ -59,5 +60,6 @@ export default ({ changeAuthPopupActive }) => {
                 <Button variant="warning" type="submit" className="btn__type__1 neon__border__type__2 neon__text__type__2">Login</Button>
             </Form>
         </div>
+        {error ? <AlertPopup error={error} /> : <></>}
     </div>
 }

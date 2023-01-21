@@ -3,11 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../../App";
 import "./style.css";
 import { Form, Button } from "react-bootstrap";
-import { useEffect } from "react";
-// import Local from "../../local";
+import AlertPopup from "../AlertPopup";
 
 export default ({ changeRegPopupActive }) => {
-    const { api, setToken, userMatch3, setUserMatch3     } = useContext(Context);
+    const { api, setToken, userMatch3, setUserMatch3 } = useContext(Context);
 
     const nav = useNavigate();
 
@@ -16,7 +15,7 @@ export default ({ changeRegPopupActive }) => {
     const [avatar, setAvatar] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
-
+    const [error, setError] = useState();
 
     const handler = e => {
         e.preventDefault();
@@ -24,37 +23,29 @@ export default ({ changeRegPopupActive }) => {
         api.regPlayer({ "email": email, "password": password, "avatar": avatar, "playername": playerName, "surname": surname })
             .then(res => res.json())
             .then(data => {
-                // setToken(data.token);
                 setPlayerName("");
                 setSurname("");
                 setAvatar("");
                 setPassword("");
-                // setEmail("");
-                changeRegPopupActive(false)
-                // nav("");
                 console.log(data.message === "New player is added")
                 if (data.message === "New player is added") {
                     api.authPlayer({ "email": email, "password": password })
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data)
-                            localStorage.setItem("tokenMatch3", data.token);
-                            localStorage.setItem("userMatch3", JSON.stringify(data.player));
-                            setToken(data.token);
-                            setUserMatch3(JSON.stringify(data.player));
-                            
+                            if (data.error) {
+                                setError(data.error);
+                            } else {
+                                setError();
+                                localStorage.setItem("tokenMatch3", data.token);
+                                localStorage.setItem("userMatch3", JSON.stringify(data.player));
+                                setToken(data.token);
+                                setUserMatch3(JSON.stringify(data.player));
+                                changeRegPopupActive(false)
+                            }
                         })
                 }
 
             })
-            // console.log(currentEmail)
-            // if (currentEmail) {
-            //     api.getPlayers()
-            //         .then(res => res.json())
-            //         .then(info => {
-            //             console.log(info)
-            //         })
-            // }
     }
 
 
@@ -111,5 +102,6 @@ export default ({ changeRegPopupActive }) => {
                 <Button variant="warning" type="submit" className="btn__type__1 neon__border__type__2 neon__text__type__2">Registration</Button>
             </Form>
         </div>
+        {error ? <AlertPopup error={error} /> : <></>}
     </div>
 }
