@@ -5,7 +5,6 @@
     grid-template-areas: "image" "text" "stats";
     background: black;
     text-align: center;
-
     transition: 0.5s ease;
     cursor: pointer;
     margin: 30px;
@@ -18,10 +17,6 @@
     border-top-right-radius: 15px;
     background-size: cover;
 } */
-<<<<<<< HEAD
-
-=======
->>>>>>> 324579ec7a711f8524c0b89fd26d36aece63ac3f
 
 .card-text {
     /* grid-area: text; */
@@ -54,7 +49,7 @@
 
 .change-data:hover {
     font-size: 40px;
-    color: rgb(114, 30, 224);;
+    color: rgb(114, 30, 224);
 }
 
 .card-stats {
@@ -75,5 +70,4 @@
 
 .card:hover {
     transform: scale(1.15);
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
 }

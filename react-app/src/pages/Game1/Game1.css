@@ -6,6 +6,7 @@
     justify-content: center;
     align-items: center;
     margin: auto;
+    margin-top: 50px;
 }
 
 .game {
@@ -16,10 +17,11 @@
 
 }
 
-.game div {
+.cell {
     width: 70px;
     height: 70px;
     border: 1px solid black;
     box-sizing: border-box;
+    cursor: pointer;
+    /* border-radius: 25%; */
 }
-

@@ -57,9 +57,10 @@ export default () => {
                     <Route path="/map1" element={<></>} />
                     <Route path="/map2" element={<></>} />
                     <Route path="/map3" element={<></>} />
-                    <Route path="/records" element={<Records setIsPersanalData={setIsPersanalData} isPersanalData={isPersanalData}/>} />
+                    <Route path="/records" element={<Records setIsPersanalData={setIsPersanalData} isPersanalData={isPersanalData} />} />
                     <Route path="/info" element={<Info />} />
-                    <Route path="/personaldata" element={<PersonalData setIsPersanalData={setIsPersanalData} isPersanalData={isPersanalData}/>} />
+                    <Route path="/personaldata" element={<PersonalData setIsPersanalData={setIsPersanalData} isPersanalData={isPersanalData} />} />
+
                 </Routes>
             </div>
         </Context.Provider>

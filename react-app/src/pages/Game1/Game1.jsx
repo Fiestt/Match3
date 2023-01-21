@@ -3,20 +3,26 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../../App";
 import "./Game1.css"
 
+import blueCoin from "../../images/blue_coin.png";
+import greenCoin from "../../images/green_coin.png";
+import orangeCoin from "../../images/orange_coin.png";
+import purpleCoin from "../../images/purple_coin.png";
+import redCoin from "../../images/red_coin.png";
+import yellowCoin from "../../images/yellow_coin.png";
+import blank from "../../images/blank.png";
 
 const width = 8
 const squareColors = [
-    "blue",
-    "green",
-    "orange",
-    "purple",
-    "red",
-    "yellow"
+    blueCoin,
+    greenCoin,
+    orangeCoin,
+    purpleCoin,
+    redCoin,
+    yellowCoin
 ]
 
 export default () => {
 
-    //!!!!!!!!! start fix by Vlad
     const nav = useNavigate();
     const { api } = useContext(Context);
 
@@ -25,32 +31,24 @@ export default () => {
 
     useEffect(() => {
         const id = JSON.parse(localStorage.getItem("userMatch3")).id;
-        // console.log(id, "WWWWWWWWW");
         api.getOnePlayer(id)
             .then(res => res.json())
             .then(data => {
                 setServerScore(data.score)
-                console.log(data, "QQQQQQQQQQ");
             })
     }, [])
 
     useEffect(() => {
         if (currentScore > serverScore) {
-
             let obj = JSON.parse(localStorage.getItem("userMatch3"));
-            console.log(obj, "VVVVVV")
             obj.score = currentScore
             api.updPlayer(obj)
                 .then(res => res.json())
                 .then(data => {
                     localStorage.setItem("userMatch3", JSON.stringify(data))
-                    console.log(data, "NEW SCORE OF A PLAYER");
                 })
         }
-       
     }, [currentScore])
-
-    //!!!!!!!!! end fix by Vlad
 
     const [certainColorArray, setCertainColorArray] = useState([])
     const [pickedItem, setPickedItem] = useState()
@@ -59,36 +57,26 @@ export default () => {
     const checkColomnOfFour = () => {
         for (let i = 0; i <= 39; i++) {
             const columnOfFour = [i, i + width, i + width * 2, i + width * 3]
-            // console.log(columnOfThree)
             const colorForCheck = certainColorArray[i]
 
             if (columnOfFour.every(elNumber => certainColorArray[elNumber] === colorForCheck)) {
-                columnOfFour.forEach(elNumber => certainColorArray[elNumber] = "")
-<<<<<<< HEAD
+                columnOfFour.forEach(elNumber => certainColorArray[elNumber] = blank)
                 setCurrentScore(currentScore + 4)
-=======
->>>>>>> 324579ec7a711f8524c0b89fd26d36aece63ac3f
                 return true
             }
         }
-        // setCurrentScore(currentScore + 4);
     }
 
     const checkColomnOfThree = () => {
         for (let i = 0; i <= 47; i++) {
             const columnOfThree = [i, i + width, i + width * 2]
-            // console.log(columnOfThree)
             const colorForCheck = certainColorArray[i]
 
             if (columnOfThree.every(elNumber => certainColorArray[elNumber] === colorForCheck)) {
-                columnOfThree.forEach(elNumber => certainColorArray[elNumber] = "")
-<<<<<<< HEAD
+                columnOfThree.forEach(elNumber => certainColorArray[elNumber] = blank)
                 setCurrentScore(currentScore + 3)
-=======
->>>>>>> 324579ec7a711f8524c0b89fd26d36aece63ac3f
                 return true
             }
-            // setCurrentScore(currentScore + 3);
         }
     }
 
@@ -101,11 +89,8 @@ export default () => {
             if (blocksNotForCheck.includes(i)) continue
 
             if (rowOfFour.every(elNumber => certainColorArray[elNumber] === colorForCheck)) {
-                rowOfFour.forEach(elNumber => certainColorArray[elNumber] = "")
-<<<<<<< HEAD
+                rowOfFour.forEach(elNumber => certainColorArray[elNumber] = blank)
                 setCurrentScore(currentScore + 4)
-=======
->>>>>>> 324579ec7a711f8524c0b89fd26d36aece63ac3f
                 return true
             }
         }
@@ -120,11 +105,8 @@ export default () => {
             if (blocksNotForCheck.includes(i)) continue
 
             if (rowOfThree.every(elNumber => certainColorArray[elNumber] === colorForCheck)) {
-                rowOfThree.forEach(elNumber => certainColorArray[elNumber] = "")
-<<<<<<< HEAD
+                rowOfThree.forEach(elNumber => certainColorArray[elNumber] = blank)
                 setCurrentScore(currentScore + 3)
-=======
->>>>>>> 324579ec7a711f8524c0b89fd26d36aece63ac3f
                 return true
             }
         }
@@ -135,14 +117,14 @@ export default () => {
             const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
             const isfirstRow = firstRow.includes(i)
 
-            if (isfirstRow && certainColorArray[i] === "") {
+            if (isfirstRow && certainColorArray[i] === blank) {
                 const randomNumberfromOneToFive = Math.floor(Math.random() * squareColors.length)
                 certainColorArray[i] = squareColors[randomNumberfromOneToFive]
             }
 
-            if (certainColorArray[i + width] === "") {
+            if (certainColorArray[i + width] === blank) {
                 certainColorArray[i + width] = certainColorArray[i]
-                certainColorArray[i] = ""
+                certainColorArray[i] = blank
             }
         }
     }
@@ -162,13 +144,10 @@ export default () => {
         console.log(e.target, "drag end")
 
         const pickedItemId = parseInt(pickedItem.getAttribute('data-id'))
-        console.log(pickedItem)
-
         const replacedItemId = parseInt(replacedItem.getAttribute('data-id'))
-        console.log(replacedItemId)
 
-        certainColorArray[replacedItemId] = pickedItem.style.backgroundColor
-        certainColorArray[pickedItemId] = replacedItem.style.backgroundColor
+        certainColorArray[replacedItemId] = pickedItem.getAttribute("src")
+        certainColorArray[pickedItemId] = replacedItem.getAttribute("src")
 
         const allowedMoves = [
             pickedItemId - 1,
@@ -184,30 +163,18 @@ export default () => {
         const isRowOfFour = checkRowOfFour()
         const isRowOfThree = checkRowOfThree()
 
-
-        //!!!!!!!!! start fix by Vlad обновления счета
         if (replacedItemId && isAllowedMove && (isColomnOfFour || isRowOfFour)) {
             setPickedItem()
             setReplacedItem()
-<<<<<<< HEAD
-            // setCurrentScore(currentScore + 4);
         } else if (replacedItemId && isAllowedMove && (isColomnOfThree || isRowOfThree)) {
             setPickedItem()
             setReplacedItem()
-            // setCurrentScore(currentScore + 3);
-=======
-            setCurrentScore(currentScore + 4);
-        } else if (replacedItemId && isAllowedMove && (isColomnOfThree || isRowOfThree)) {
-            setPickedItem()
-            setReplacedItem()
-            setCurrentScore(currentScore + 3);
->>>>>>> 324579ec7a711f8524c0b89fd26d36aece63ac3f
+
         } else {
-            certainColorArray[replacedItemId] = replacedItem.style.backgroundColor
-            certainColorArray[pickedItemId] = pickedItem.style.backgroundColor
+            certainColorArray[replacedItemId] = replacedItem.getAttribute("src")
+            certainColorArray[pickedItemId] = pickedItem.getAttribute("src")
             setCertainColorArray([...certainColorArray])
         }
-        //!!!!!!!!! end fix by Vlad
     }
 
 
@@ -235,22 +202,10 @@ export default () => {
             checkRowOfThree()
             moveBelow()
             setCertainColorArray([...certainColorArray])
-<<<<<<< HEAD
-            console.log("SSSSSSSSSSS")
-        }, 1000)
-=======
-            // console.log("SSSSSSSSSSS")
         }, 100)
->>>>>>> 324579ec7a711f8524c0b89fd26d36aece63ac3f
         return () => clearInterval(id)
     }, [checkColomnOfFour, checkColomnOfThree, checkRowOfFour, checkRowOfThree, moveBelow, certainColorArray])
 
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 324579ec7a711f8524c0b89fd26d36aece63ac3f
     //    useEffect(() => {
     //     const randomColorArray = []
     //     for (let i = 0; i < width * width; i++) {
@@ -263,17 +218,15 @@ export default () => {
     //      console.log(certainColorArray)
     // }, [])
 
-
-    //!!!!!!!!! start fix by Vlad кнопку бэк, счет
     return <div>
         <button className="btn__type__1 neon__text__type__2 neon__border__type__1 logout" onClick={e => nav("/")}>back</button>
         <div className="neon__title neon__text__type__1 flicker">{currentScore}</div>
         <div className="app neon__border__type__1">
             <div className="game">
-                {certainColorArray.map((elColor, i) => <div
+                {certainColorArray.map((elColor, i) => <img
                     className="cell"
                     key={i}
-                    style={{ backgroundColor: elColor, cursor: "grab" }}
+                    src={elColor}
                     data-id={i}
                     draggable={true}
                     onDragStart={dragStart}
@@ -282,7 +235,7 @@ export default () => {
                     onDragLeave={(e) => e.preventDefault()}
                     onDrop={dragDrop}
                     onDragEnd={dragEnd}
-                ></div>
+                ></img>
                 )}
             </div>
         </div>

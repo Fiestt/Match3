@@ -5,7 +5,7 @@ import { Context } from "../../App";
 import Card from "../../components/Card";
 import Loader from "../../components/Loader";
 
-export default ({isPersanalData, setIsPersanalData}) => {
+export default ({ isPersanalData, setIsPersanalData }) => {
     const nav = useNavigate();
     const { api } = useContext(Context);
     const [users, setUsers] = useState();
@@ -50,13 +50,9 @@ export default ({isPersanalData, setIsPersanalData}) => {
         </form>
         {
             isLoading ? <Loader /> :
-                <div className="card__container " >
+                <div className="card__container" >
                     {users && users.map((d) =>
-<<<<<<< HEAD
-                        <Card key={d.id} user={d} isPersanalData={isPersanalData}/>
-=======
-                        <Card key={d.id} info={d} />
->>>>>>> 324579ec7a711f8524c0b89fd26d36aece63ac3f
+                        <Card key={d.id} user={d} isPersanalData={isPersanalData} />
                     )}
                 </div>
         }
