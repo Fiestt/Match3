@@ -220,7 +220,7 @@ export default () => {
 
     return <div>
         <button className="btn__type__1 neon__text__type__2 neon__border__type__1 logout" onClick={e => nav("/")}>back</button>
-        <div className="neon__title neon__text__type__1 flicker">{currentScore}</div>
+        <div className="neon__title neon__text__type__1 flicker score">{currentScore}</div>
         <div className="app neon__border__type__1">
             <div className="game">
                 {certainColorArray.map((elColor, i) => <img

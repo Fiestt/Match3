@@ -40,3 +40,7 @@
     background: #efefef;
     color: #666;
 }
+
+.record__container {
+    padding-top: 20px;
+}

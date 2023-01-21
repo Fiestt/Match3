@@ -25,14 +25,21 @@ export default ({ isPersanalData, setIsPersanalData }) => {
 
     const sortCards = (sortFlag) => {
         const copyCards = users.concat();
-        const sortedCards = copyCards.sort((a, b) => { return a[sortFlag] > b[sortFlag] ? 1 : -1 });
-        setUsers(sortedCards);
+        if (sortFlag === "score") {
+            const sortedCards = copyCards.sort((a, b) => { return a[sortFlag] < b[sortFlag] ? 1 : -1 });
+            setUsers(sortedCards);
+        } else {
+            const sortedCards = copyCards.sort((a, b) => { return a[sortFlag] > b[sortFlag] ? 1 : -1 });
+            setUsers(sortedCards);
+        }
     }
 
     return <div className="records">
         <button className="btn__type__1 neon__text__type__2 neon__border__type__1 logout" onClick={e => nav("/")}>back</button>
-        <div className="main__title">
-            <h1 className="neon__title neon__text__type__1">REC<span className="neon__title neon__text__type__1 flicker">O</span>RDS</h1>
+        <div className="record__container">
+            <div className="main__title">
+                <h1 className="neon__title neon__text__type__1">REC<span className="neon__title neon__text__type__1 flicker">O</span>RDS</h1>
+            </div>
         </div>
         <form className="sort">
             <div className="radio">

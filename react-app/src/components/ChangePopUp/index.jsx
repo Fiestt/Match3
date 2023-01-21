@@ -7,7 +7,7 @@ import { useEffect } from "react";
 // import Local from "../../local";
 
 export default ({ changeData, setChangeData, isChanged, setIsChangedFlag }) => {
-    const { api, setToken, userMatch3, setUserMatch3     } = useContext(Context);
+    const { api, setToken, userMatch3, setUserMatch3 } = useContext(Context);
 
     const nav = useNavigate();
     let obj = JSON.parse(localStorage.getItem("userMatch3"));
@@ -17,7 +17,7 @@ export default ({ changeData, setChangeData, isChanged, setIsChangedFlag }) => {
 
     const handler = e => {
         e.preventDefault()
-        
+
         console.log(obj, "VVVVVV")
         obj.playername = playerName
         obj.surname = surname
@@ -25,12 +25,13 @@ export default ({ changeData, setChangeData, isChanged, setIsChangedFlag }) => {
         api.updPlayer(obj)
             .then(res => res.json())
             .then(data => {
+                console.log(data);
                 localStorage.setItem("userMatch3", JSON.stringify(data))
                 console.log("set new player in local");
                 setIsChangedFlag(true)
                 setChangeData(false)
             })
-        
+
     }
 
     // useEffect(() => {

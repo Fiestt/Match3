@@ -25,3 +25,7 @@
     cursor: pointer;
     /* border-radius: 25%; */
 }
+
+.score {
+    padding-top: 40px;
+}
