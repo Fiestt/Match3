@@ -7,6 +7,7 @@ export default () => {
     const nav = useNavigate();
     const { setToken, setUserMatch3 } = useContext(Context);
 
+
     const logout = () => {
         setToken();
         setUserMatch3();

@@ -64,6 +64,10 @@ export default () => {
 
             if (columnOfFour.every(elNumber => certainColorArray[elNumber] === colorForCheck)) {
                 columnOfFour.forEach(elNumber => certainColorArray[elNumber] = "")
+<<<<<<< HEAD
+                setCurrentScore(currentScore + 4)
+=======
+>>>>>>> 324579ec7a711f8524c0b89fd26d36aece63ac3f
                 return true
             }
         }
@@ -78,6 +82,10 @@ export default () => {
 
             if (columnOfThree.every(elNumber => certainColorArray[elNumber] === colorForCheck)) {
                 columnOfThree.forEach(elNumber => certainColorArray[elNumber] = "")
+<<<<<<< HEAD
+                setCurrentScore(currentScore + 3)
+=======
+>>>>>>> 324579ec7a711f8524c0b89fd26d36aece63ac3f
                 return true
             }
             // setCurrentScore(currentScore + 3);
@@ -94,6 +102,10 @@ export default () => {
 
             if (rowOfFour.every(elNumber => certainColorArray[elNumber] === colorForCheck)) {
                 rowOfFour.forEach(elNumber => certainColorArray[elNumber] = "")
+<<<<<<< HEAD
+                setCurrentScore(currentScore + 4)
+=======
+>>>>>>> 324579ec7a711f8524c0b89fd26d36aece63ac3f
                 return true
             }
         }
@@ -109,6 +121,10 @@ export default () => {
 
             if (rowOfThree.every(elNumber => certainColorArray[elNumber] === colorForCheck)) {
                 rowOfThree.forEach(elNumber => certainColorArray[elNumber] = "")
+<<<<<<< HEAD
+                setCurrentScore(currentScore + 3)
+=======
+>>>>>>> 324579ec7a711f8524c0b89fd26d36aece63ac3f
                 return true
             }
         }
@@ -173,11 +189,19 @@ export default () => {
         if (replacedItemId && isAllowedMove && (isColomnOfFour || isRowOfFour)) {
             setPickedItem()
             setReplacedItem()
+<<<<<<< HEAD
+            // setCurrentScore(currentScore + 4);
+        } else if (replacedItemId && isAllowedMove && (isColomnOfThree || isRowOfThree)) {
+            setPickedItem()
+            setReplacedItem()
+            // setCurrentScore(currentScore + 3);
+=======
             setCurrentScore(currentScore + 4);
         } else if (replacedItemId && isAllowedMove && (isColomnOfThree || isRowOfThree)) {
             setPickedItem()
             setReplacedItem()
             setCurrentScore(currentScore + 3);
+>>>>>>> 324579ec7a711f8524c0b89fd26d36aece63ac3f
         } else {
             certainColorArray[replacedItemId] = replacedItem.style.backgroundColor
             certainColorArray[pickedItemId] = pickedItem.style.backgroundColor
@@ -211,12 +235,22 @@ export default () => {
             checkRowOfThree()
             moveBelow()
             setCertainColorArray([...certainColorArray])
+<<<<<<< HEAD
+            console.log("SSSSSSSSSSS")
+        }, 1000)
+=======
             // console.log("SSSSSSSSSSS")
         }, 100)
+>>>>>>> 324579ec7a711f8524c0b89fd26d36aece63ac3f
         return () => clearInterval(id)
     }, [checkColomnOfFour, checkColomnOfThree, checkRowOfFour, checkRowOfThree, moveBelow, certainColorArray])
 
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 324579ec7a711f8524c0b89fd26d36aece63ac3f
     //    useEffect(() => {
     //     const randomColorArray = []
     //     for (let i = 0; i < width * width; i++) {

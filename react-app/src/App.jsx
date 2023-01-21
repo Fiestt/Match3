@@ -19,6 +19,9 @@ const Context = React.createContext({});
 
 
 export default () => {
+
+    const [isPersanalData, setIsPersanalData] = useState(false)
+
     const [token, setToken] = useState();
     const [api, setApi] = useState(new Api(token));
     const [userMatch3, setUserMatch3] = useState();
@@ -54,9 +57,9 @@ export default () => {
                     <Route path="/map1" element={<></>} />
                     <Route path="/map2" element={<></>} />
                     <Route path="/map3" element={<></>} />
-                    <Route path="/records" element={<Records />} />
+                    <Route path="/records" element={<Records setIsPersanalData={setIsPersanalData} isPersanalData={isPersanalData}/>} />
                     <Route path="/info" element={<Info />} />
-                    <Route path="/personaldata" element={<PersonalData />} />
+                    <Route path="/personaldata" element={<PersonalData setIsPersanalData={setIsPersanalData} isPersanalData={isPersanalData}/>} />
                 </Routes>
             </div>
         </Context.Provider>

@@ -54,9 +54,15 @@ class Requests {
     // UPDATING A PLAYER
 
     async updPlayer(req, res) {
+<<<<<<< HEAD
+        const { id, playername, surname, avatar, score } = req.body
+        try {
+            const player = await db.query('UPDATE player SET playername = ?, surname = ?, avatar = ?, score = ? WHERE id = ?', [playername, surname, avatar, score, id])
+=======
         const { id, playername, surname, score } = req.body
         try {
             const player = await db.query('UPDATE player SET playername = ?, surname = ?, score = ? WHERE id = ?', [playername, surname, score, id])
+>>>>>>> 324579ec7a711f8524c0b89fd26d36aece63ac3f
 
             console.log(player, "PPPP")
 
