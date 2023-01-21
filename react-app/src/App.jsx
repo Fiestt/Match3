@@ -60,6 +60,7 @@ export default () => {
                     <Route path="/records" element={<Records setIsPersanalData={setIsPersanalData} isPersanalData={isPersanalData} />} />
                     <Route path="/info" element={<Info />} />
                     <Route path="/personaldata" element={<PersonalData setIsPersanalData={setIsPersanalData} isPersanalData={isPersanalData} />} />
+
                 </Routes>
             </div>
         </Context.Provider>

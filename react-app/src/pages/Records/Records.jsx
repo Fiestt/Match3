@@ -18,6 +18,7 @@ export default ({ isPersanalData, setIsPersanalData }) => {
             .then(data => {
                 setUsers(data);
                 setIsLoading(false);
+                console.log(data)
             })
     }, [])
 

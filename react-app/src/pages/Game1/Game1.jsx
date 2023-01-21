@@ -169,6 +169,7 @@ export default () => {
         } else if (replacedItemId && isAllowedMove && (isColomnOfThree || isRowOfThree)) {
             setPickedItem()
             setReplacedItem()
+
         } else {
             certainColorArray[replacedItemId] = replacedItem.getAttribute("src")
             certainColorArray[pickedItemId] = pickedItem.getAttribute("src")
@@ -204,7 +205,6 @@ export default () => {
         }, 100)
         return () => clearInterval(id)
     }, [checkColomnOfFour, checkColomnOfThree, checkRowOfFour, checkRowOfThree, moveBelow, certainColorArray])
-
 
     //    useEffect(() => {
     //     const randomColorArray = []

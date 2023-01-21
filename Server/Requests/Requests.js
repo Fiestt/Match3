@@ -58,7 +58,6 @@ class Requests {
         try {
             const player = await db.query('UPDATE player SET playername = ?, surname = ?, avatar = ?, score = ? WHERE id = ?', [playername, surname, avatar, score, id])
             console.log(player, "PPPP")
-
             const newPlayer = await db.query('SELECT * FROM player WHERE id = ?', [id])
             res.json(newPlayer[0][0])
             console.log(newPlayer[0][0], "UUUU")

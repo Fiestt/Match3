@@ -1,10 +1,10 @@
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./PersonalData.css"
 import Card from "../../components/Card"
 
 export default ({ isPersanalData, setIsPersanalData }) => {
-
     const [isChangedFlag, setIsChangedFlag] = useState(false)
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("userMatch3")))
     const nav = useNavigate();
