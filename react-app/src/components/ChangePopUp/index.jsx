@@ -17,36 +17,18 @@ export default ({ changeData, setChangeData, isChanged, setIsChangedFlag }) => {
 
     const handler = e => {
         e.preventDefault()
-
-        console.log(obj, "VVVVVV")
         obj.playername = playerName
         obj.surname = surname
         obj.avatar = avatar
         api.updPlayer(obj)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 localStorage.setItem("userMatch3", JSON.stringify(data))
-                console.log("set new player in local");
                 setIsChangedFlag(true)
                 setChangeData(false)
             })
 
     }
-
-    // useEffect(() => {
-    //     api.getOnePlayer(obj.id)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setPlayerName(data.playername)
-    //             setSurname(data.surname)
-    //             setAvatar(data.avatar)
-    //             setEmail(data.email)
-    //             console.log(data, "QQQQQQQQQQ");
-    //         })
-    // }, [isChanged])
-
-
 
     return <div className={changeData ? "popupBox active" : "popupBox"}>
         <div className="popup neon__border__type__1 neon__text__type__2">

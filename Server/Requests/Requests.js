@@ -4,31 +4,13 @@ const jwt = require("jsonwebtoken")
 
 
 class Requests {
-
-    // CREATING A PLAYER
-
-    // async createPlayer(req, res) {
-    //     const { playername, surname } = req.body
-    //     try {
-    //         const newPlayer = await db.query('INSERT INTO layer (playername, surname) values ($1, $2) RETURNING *', [playername, surname])
-    //         res.json(newPlayer.rows[0])
-    //     } catch (err) {
-    //         console.log(err);
-    //         res.status(500).json({
-    //             error: "Creating error",
-    //         });
-    //     };
-    // }
-
     // GETTING ALL PLAYERS
 
     async getPlayers(req, res) {
         try {
             const player = await db.query('SELECT * FROM player')
             res.json(player[0])
-            // console.log(player[0])
         } catch (err) {
-            console.log(err);
             res.status(500).json({
                 error: "Get all players error",
             });
@@ -42,9 +24,7 @@ class Requests {
         try {
             const player = await db.query('SELECT * FROM player WHERE id = ?', [id])
             res.json(player[0][0])
-            // console.log(player[0])
         } catch (err) {
-            console.log(err);
             res.status(500).json({
                 error: "Get one player error",
             });
@@ -57,12 +37,9 @@ class Requests {
         const { id, playername, surname, avatar, score } = req.body
         try {
             const player = await db.query('UPDATE player SET playername = ?, surname = ?, avatar = ?, score = ? WHERE id = ?', [playername, surname, avatar, score, id])
-            console.log(player, "PPPP")
             const newPlayer = await db.query('SELECT * FROM player WHERE id = ?', [id])
             res.json(newPlayer[0][0])
-            console.log(newPlayer[0][0], "UUUU")
         } catch (err) {
-            console.log(err);
             res.status(500).json({
                 error: "Updating error",
             });
@@ -77,7 +54,6 @@ class Requests {
             const player = await db.query('DELETE FROM player WHERE id = ?', [id])
             res.json(player[0])
         } catch (err) {
-            console.log(err);
             res.status(500).json({
                 error: "Deleting error",
             });
@@ -141,7 +117,6 @@ class Requests {
 
 
         } catch (err) {
-            console.log(err);
             res.status(500).json({
                 error: "Registration error",
             });
@@ -179,7 +154,6 @@ class Requests {
                 })
             }
         } catch (err) {
-            console.log(err)
             res.status(500).json({ error: "Authorization error!" })
 
         }

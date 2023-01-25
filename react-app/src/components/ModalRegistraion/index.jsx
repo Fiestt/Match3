@@ -27,7 +27,6 @@ export default ({ changeRegPopupActive }) => {
                 setSurname("");
                 setAvatar("");
                 setPassword("");
-                console.log(data.message === "New player is added")
                 if (data.message === "New player is added") {
                     api.authPlayer({ "email": email, "password": password })
                         .then(res => res.json())

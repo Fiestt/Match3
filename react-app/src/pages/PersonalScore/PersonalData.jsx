@@ -15,7 +15,6 @@ export default ({ isPersanalData, setIsPersanalData }) => {
 
     useEffect(() => {
         setUser(JSON.parse(localStorage.getItem("userMatch3")));
-        console.log("CH")
     }, [isChangedFlag])
 
 

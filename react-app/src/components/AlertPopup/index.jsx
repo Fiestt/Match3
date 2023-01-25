@@ -9,6 +9,5 @@ export default ({ error }) => {
         else if (error === "Player does not exist") { setErrorMessage("You are not registred!") }
         else { setErrorMessage(error) }
     }, [])
-    console.log(error)
     return <div className="alert__popup neon__border__type__2 neon__text__type__1">{errorMessage}</div>
 } 

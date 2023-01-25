@@ -130,19 +130,14 @@ export default () => {
     }
 
     const dragStart = (e) => {
-        console.log(e.target, "drag start")
         setPickedItem(e.target)
     }
 
     const dragDrop = (e) => {
-        // e.preventDefault()
-        console.log(e.target, "drag drop")
         setReplacedItem(e.target)
     }
 
     const dragEnd = (e) => {
-        console.log(e.target, "drag end")
-
         const pickedItemId = parseInt(pickedItem.getAttribute('data-id'))
         const replacedItemId = parseInt(replacedItem.getAttribute('data-id'))
 
@@ -185,7 +180,6 @@ export default () => {
             const randomColor = squareColors[randomNumberfromOneToFive]
             randomColorArray.push(randomColor)
         }
-        // console.log(randomColorArray)
         setCertainColorArray(randomColorArray)
     }
 
@@ -205,18 +199,6 @@ export default () => {
         }, 100)
         return () => clearInterval(id)
     }, [checkColomnOfFour, checkColomnOfThree, checkRowOfFour, checkRowOfThree, moveBelow, certainColorArray])
-
-    //    useEffect(() => {
-    //     const randomColorArray = []
-    //     for (let i = 0; i < width * width; i++) {
-    //         const randomNumberfromOneToFive = Math.floor(Math.random() * squareColors.length)
-    //         const randomColor = squareColors[randomNumberfromOneToFive]
-    //         randomColorArray.push(randomColor)
-    //     }
-    //     // console.log(randomColorArray)
-    //     setCertainColorArray(randomColorArray)
-    //      console.log(certainColorArray)
-    // }, [])
 
     return <div>
         <button className="btn__type__1 neon__text__type__2 neon__border__type__1 logout" onClick={e => nav("/")}>back</button>

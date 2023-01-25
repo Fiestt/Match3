@@ -15,7 +15,6 @@ export default ({ user, setIsChangedFlag, isPersanalData }) => {
     }
 
     const changeHandler = () => {
-        console.log("CHANGE activated")
         setChangeData(true)
         setIsChangedFlag(false)
     }
